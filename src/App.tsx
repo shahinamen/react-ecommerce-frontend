@@ -1,12 +1,11 @@
-import { Routes, Route } from "react-router-dom";
-import Login from "@/pages/Login";
-import { LoginForm } from "./components/login-form";
+import Login from "./pages/login/page";
 
-export default function App() {
+function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<LoginForm />} />
-    </Routes>
+    <div className="min-h-screen">
+      <Login />
+    </div>
   );
 }
+
+export default App;
