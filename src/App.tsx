@@ -1,11 +1,10 @@
-import Login from "./pages/login/page";
+import Home from "./pages/Home";
+import Layout from "./components/Layout";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen">
-      <Login />
-    </div>
+    <Layout>
+      <Home />
+    </Layout>
   );
 }
-
-export default App;
