@@ -1,10 +1,33 @@
+import { useEffect, useState } from "react";
+import { getAllSettings } from "../lib/settings";
+interface Settings {
+  company_name?: string;
+  email?: string;
+  phone?: string;
+  address_line_one?: string;
+  address_line_two?: string;
+  city?: string;
+  country?: string;
+  [key: string]: string | undefined; // allow extra keys
+}
+
 export default function Footer() {
+  const [settings, setSettings] = useState<Settings>({});
+  useEffect(() => {
+    (async () => {
+      const allSettings = await getAllSettings();
+      setSettings(allSettings);
+    })();
+  }, []);
+
   return (
     <footer className="bg-gray-900 text-gray-300 py-12 mt-12">
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6">
         {/* Column 1 */}
         <div>
-          <h2 className="text-lg font-semibold text-white mb-4">About Us</h2>
+          <h2 className="text-lg font-semibold text-white mb-4">
+            {settings.company_name || "No Name"}
+          </h2>
           <p className="text-sm leading-relaxed">
             We are committed to delivering quality and excellence with every
             project. Our focus is on innovation, sustainability, and customer
@@ -44,10 +67,13 @@ export default function Footer() {
           <h2 className="text-lg font-semibold text-white mb-4">
             Contact Info
           </h2>
-          <ul className="text-sm space-y-2">
-            <li>Email: info@mywebsite.com</li>
-            <li>Phone: +1 234 567 890</li>
-            <li>Address: 123 Main Street, NY</li>
+          <ul className="text-sm space-y-1">
+            <li>Email: {settings.email}</li>
+            <li>Phone: {settings.phone}</li>
+            <li>
+              Address: {settings.address_line_one}, {settings.address_line_two},{" "}
+              {settings.city}, {settings.country}
+            </li>
           </ul>
         </div>
 

@@ -1,14 +1,29 @@
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { useState } from "react";
+import { Camera, Menu } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getAllSettings } from "../lib/settings";
+
+interface Settings {
+  company_name?: string;
+}
 
 export default function Header() {
+  const [settings, setSettings] = useState<Settings>({});
   const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    (async () => {
+      const allSettings = await getAllSettings();
+      setSettings(allSettings);
+    })();
+  }, []);
 
   return (
     <header className="border-b bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <h1 className="text-2xl font-bold text-gray-800">MyWebsite</h1>
+        <h1 className="text-2xl font-bold text-gray-800 flex items-center space-x-3">
+          <Camera className="mr-1" />
+          {settings.company_name || "Company Name"}
+        </h1>
 
         <nav className="hidden md:flex space-x-6 text-gray-700">
           <a href="/" className="hover:text-primary">

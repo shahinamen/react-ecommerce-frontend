@@ -6,7 +6,7 @@ export const API_BASE_URL = "http://127.0.0.1:4000/api";
  * @param {string} slug
  * @returns {Promise<Object|null>}
  */
-export async function getSettingBySlug(slug) {
+export async function getSettingBySlug(slug : string) {
   try {
     const response = await fetch(`${API_BASE_URL}/settings/${slug}`);
     if (!response.ok) throw new Error(`Error fetching setting: ${response.status}`);
@@ -20,7 +20,7 @@ export async function getSettingBySlug(slug) {
 /**
  * Generic fetch helper for GET requests
  */
-export async function getRequest(endpoint) {
+export async function getRequest(endpoint : string) {
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`);
     if (!response.ok) throw new Error(`Error fetching ${endpoint}`);
