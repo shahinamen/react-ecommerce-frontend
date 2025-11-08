@@ -88,7 +88,7 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-between px-5 py-4">
         {/* ---------- LOGO LEFT ---------- */}
         <Link href="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg" />
+          <div className="w-8 h-8 rounded-lg" />
           <h1 className="text-xl font-bold tracking-tight">
             {settings.company_name || "MyStore"}
           </h1>
