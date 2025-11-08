@@ -58,7 +58,8 @@ export function LoginForm({
       }
 
       if (data.token) {
-        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("adminAuthToken", data.token);
+        localStorage.setItem("adminAuthUser", JSON.stringify(data.user));
       }
       router.push("/admin/dashboard");
     } catch (err: any) {
